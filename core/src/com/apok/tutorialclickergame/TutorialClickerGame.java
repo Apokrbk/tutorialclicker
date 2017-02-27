@@ -4,9 +4,6 @@ import com.apok.tutorialclickergame.screens.SplashScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class TutorialClickerGame extends Game {
 
@@ -37,8 +34,17 @@ public class TutorialClickerGame extends Game {
 	public void addPoint()
 	{
 		points++;
+		updateSavedScoreInPrefs();
+	}
+
+	private void updateSavedScoreInPrefs() {
 		prefs.putInteger(GAME_SCORE, points);
 		prefs.flush();
+	}
+
+	public void resetGameScore() {
+		points = 0;
+		updateSavedScoreInPrefs();
 	}
 
 	/*******
@@ -56,4 +62,5 @@ public class TutorialClickerGame extends Game {
 	public int getPoints() {
 		return points;
 	}
+
 }
