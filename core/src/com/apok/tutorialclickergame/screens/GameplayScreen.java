@@ -5,6 +5,7 @@ import com.apok.tutorialclickergame.entities.Player;
 import com.apok.tutorialclickergame.ui.IClickCallback;
 import com.apok.tutorialclickergame.ui.PlayerButton;
 import com.apok.tutorialclickergame.ui.ResetScoreButton;
+import com.apok.tutorialclickergame.ui.ScoreLabel;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -16,7 +17,7 @@ public class GameplayScreen extends AbstractScreen {
     private Player player;
     private PlayerButton playerButton;
     private ResetScoreButton resetScoreButton;
-    private Label scoreLabel;
+    private ScoreLabel scoreLabel;
 
     public GameplayScreen(TutorialClickerGame game) {
         super(game);
@@ -40,11 +41,7 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     private void initScoreLabel() {
-        Label.LabelStyle labelStyle = new Label.LabelStyle();
-        labelStyle.font = new BitmapFont();
-        scoreLabel = new Label("", labelStyle);
-        scoreLabel . setX(20);
-        scoreLabel.setY(650);
+        scoreLabel = new ScoreLabel();
         stage.addActor(scoreLabel);
     }
 
