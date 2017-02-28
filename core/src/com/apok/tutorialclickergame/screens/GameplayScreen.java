@@ -1,6 +1,7 @@
 package com.apok.tutorialclickergame.screens;
 
 import com.apok.tutorialclickergame.TutorialClickerGame;
+import com.apok.tutorialclickergame.entities.FlyingObject;
 import com.apok.tutorialclickergame.entities.Player;
 import com.apok.tutorialclickergame.ui.IClickCallback;
 import com.apok.tutorialclickergame.ui.PlayerButton;
@@ -16,6 +17,7 @@ public class GameplayScreen extends AbstractScreen {
     private ResetScoreButton resetScoreButton;
     private Image background;
     private ScoreLabel scoreLabel;
+    private FlyingObject flyingObject;
 
     public GameplayScreen(TutorialClickerGame game) {
         super(game);
@@ -27,6 +29,13 @@ public class GameplayScreen extends AbstractScreen {
         initPlayerButton();
         initScoreLabel();
         initResetScoreButton();
+        initFlyingObjects();
+    }
+
+    private void initFlyingObjects() {
+        flyingObject = new FlyingObject(FlyingObject.MONEY);
+        stage.addActor(flyingObject);
+        flyingObject.fly();
     }
 
     private void initBackground() {
