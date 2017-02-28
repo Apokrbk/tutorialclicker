@@ -4,21 +4,18 @@ import com.apok.tutorialclickergame.TutorialClickerGame;
 import com.apok.tutorialclickergame.entities.Player;
 import com.apok.tutorialclickergame.ui.IClickCallback;
 import com.apok.tutorialclickergame.ui.PlayerButton;
+import com.apok.tutorialclickergame.ui.ResetScoreButton;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-/**
- * Created by Apok on 27.02.2017.
- */
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+
+
 
 public class GameplayScreen extends AbstractScreen {
 
     private Player player;
     private PlayerButton playerButton;
-    private Button resetScoreButton;
+    private ResetScoreButton resetScoreButton;
     private Label scoreLabel;
 
     public GameplayScreen(TutorialClickerGame game) {
@@ -33,20 +30,13 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     private void initResetScoreButton() {
-        resetScoreButton = new Button(new Button.ButtonStyle());
-        resetScoreButton.setHeight(50);
-        resetScoreButton.setWidth(50);
-        resetScoreButton.setX(150);
-        resetScoreButton.setY(650);
-        resetScoreButton.setDebug(true);
-        stage.addActor(resetScoreButton);
-        resetScoreButton.addListener(new ClickListener(){
+        resetScoreButton = new ResetScoreButton(new IClickCallback() {
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            public void onClick() {
                 game.resetGameScore();
-                return super.touchDown(event, x, y, pointer, button);
             }
         });
+        stage.addActor(resetScoreButton);
     }
 
     private void initScoreLabel() {
