@@ -33,7 +33,7 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     private void initFlyingObjects() {
-        flyingObject = new FlyingObject(FlyingObject.MONEY);
+        flyingObject = new FlyingObject(FlyingObject.FlyingObjectType.PASSIVE, game);
         stage.addActor(flyingObject);
         flyingObject.fly();
     }
@@ -63,7 +63,7 @@ public class GameplayScreen extends AbstractScreen {
             @Override
             public void onClick() {
                 player.reactOnClick();
-                game.addPoint();
+                game.addPoints(1);
             }
         });
         stage.addActor(playerButton);

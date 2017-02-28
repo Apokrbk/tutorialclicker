@@ -31,9 +31,9 @@ public class TutorialClickerGame extends Game {
 		points = prefs.getInteger(GAME_SCORE);
 	}
 
-	public void addPoint()
+	public void addPoints(int pointsToAdd)
 	{
-		points++;
+		points+= pointsToAdd;
 		updateSavedScoreInPrefs();
 	}
 
@@ -63,4 +63,7 @@ public class TutorialClickerGame extends Game {
 		return points;
 	}
 
+	public void addPassiveIncome() {
+		System.out.println("passive income click");
+	}
 }
