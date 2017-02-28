@@ -7,11 +7,6 @@ import com.apok.tutorialclickergame.ui.PlayerButton;
 import com.apok.tutorialclickergame.ui.ResetScoreButton;
 import com.apok.tutorialclickergame.ui.ScoreLabel;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-
-
 
 public class GameplayScreen extends AbstractScreen {
 
