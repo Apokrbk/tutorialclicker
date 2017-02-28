@@ -7,13 +7,14 @@ import com.apok.tutorialclickergame.ui.PlayerButton;
 import com.apok.tutorialclickergame.ui.ResetScoreButton;
 import com.apok.tutorialclickergame.ui.ScoreLabel;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class GameplayScreen extends AbstractScreen {
 
     private Player player;
     private PlayerButton playerButton;
     private ResetScoreButton resetScoreButton;
-    private Texture background;
+    private Image background;
     private ScoreLabel scoreLabel;
 
     public GameplayScreen(TutorialClickerGame game) {
@@ -21,11 +22,16 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     protected void init() {
-        background = new Texture("background.png");
+        initBackground();
         initPlayer();
         initPlayerButton();
         initScoreLabel();
         initResetScoreButton();
+    }
+
+    private void initBackground() {
+        background = new Image(new Texture("background.png"));
+        stage.addActor(background);
     }
 
     private void initResetScoreButton() {
@@ -63,9 +69,6 @@ public class GameplayScreen extends AbstractScreen {
     public void render(float delta) {
         super.render(delta);
         update();
-        spriteBatch.begin();
-        spriteBatch.draw(background, 0, 0);
-        spriteBatch.end();
         spriteBatch.begin();
         stage.draw();
         spriteBatch.end();
