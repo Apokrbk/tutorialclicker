@@ -2,11 +2,13 @@ package com.apok.tutorialclickergame.entities;
 
 import com.apok.tutorialclickergame.TutorialClickerGame;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+
 
 /**
  * Created by Apok on 28.02.2017.
@@ -25,7 +27,9 @@ public class FlyingObject extends Image {
     private final static int WIDTH = 50;
     private final static int HEIGHT = 50;
     private static final int STARTING_Y = -100;
-    private static final int STARTING_X = 0;
+    private static final int STARTING_X_1 = 0;
+    private static final int STARTING_X_2 = TutorialClickerGame.WIDTH;
+    private int startingX;
     private FlyingObjectType type;
     private TutorialClickerGame game;
 
@@ -35,7 +39,8 @@ public class FlyingObject extends Image {
         this.game = game;
         this.setOrigin(WIDTH/2, HEIGHT/2);
         this.setSize(WIDTH,HEIGHT);
-        this.setPosition(STARTING_X, STARTING_Y);
+        startingX = MathUtils.randomBoolean() ? STARTING_X_1 : STARTING_X_2;
+        this.setPosition(startingX, STARTING_Y);
         this.addListener(new ClickListener()
         {
             @Override
@@ -65,13 +70,15 @@ public class FlyingObject extends Image {
 
     public void fly()
     {
+        int xSign = 0;
+        xSign = startingX == STARTING_X_1 ? 1 : -1;
         Action actionA= Actions.parallel(
-                Actions.moveBy(300,200,5),
-                Actions.rotateBy(360,5)
+                Actions.moveBy(xSign*300+(MathUtils.random(-200,200)),200,MathUtils.random(1,4)),
+                Actions.rotateBy(360,MathUtils.random(1,3));
         );
 
         Action actionB = Actions.parallel(
-                Actions.moveBy(-500,900,3),
+                Actions.moveBy(xSign*(-500),900,MathUtils.random(1,3)),
                 Actions.rotateBy(360,3)
         );
 
