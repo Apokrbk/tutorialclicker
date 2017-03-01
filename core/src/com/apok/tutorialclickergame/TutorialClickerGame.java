@@ -1,6 +1,7 @@
 package com.apok.tutorialclickergame;
 
 import com.apok.tutorialclickergame.screens.SplashScreen;
+import com.apok.tutorialclickergame.service.PassiveIncomeService;
 import com.apok.tutorialclickergame.service.ScoreService;
 import com.apok.tutorialclickergame.service.SoundService;
 import com.badlogic.gdx.Game;
@@ -18,6 +19,8 @@ public class TutorialClickerGame extends Game {
 	private SoundService soundService;
 	private ScoreService scoreService;
 
+	private PassiveIncomeService passiveIncomeService;
+
 	@Override
 	public void create () {
 		init();
@@ -27,6 +30,7 @@ public class TutorialClickerGame extends Game {
 	private void init() {
 		soundService = new SoundService();
 		scoreService = new ScoreService();
+		passiveIncomeService = new PassiveIncomeService(scoreService);
 	}
 
 
@@ -48,5 +52,9 @@ public class TutorialClickerGame extends Game {
 
 	public ScoreService getScoreService() {
 		return scoreService;
+	}
+
+	public PassiveIncomeService getPassiveIncomeService() {
+		return passiveIncomeService;
 	}
 }

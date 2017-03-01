@@ -15,6 +15,7 @@ public class ScoreService {
 
 
     private int points;
+
     private int passiveIncome;
     private Preferences prefs;
 
@@ -25,7 +26,6 @@ public class ScoreService {
     public void addPassiveIncome() {
         passiveIncome++;
         updateSavedScoreInPrefs();
-        System.out.println("passive: "+ passiveIncome);
     }
 
     private void init() {
@@ -63,4 +63,9 @@ public class ScoreService {
     public int getPoints() {
         return points;
     }
+
+    public int getPassiveIncome() {
+        return passiveIncome;
+    }
+
 }

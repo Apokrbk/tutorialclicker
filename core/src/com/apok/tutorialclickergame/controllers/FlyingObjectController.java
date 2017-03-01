@@ -36,7 +36,7 @@ public class FlyingObjectController {
     }
 
     private void addRandomFlyingObjectToStage(Stage stage, TutorialClickerGame game) {
-        FlyingObject flyingObject = null;
+        FlyingObject flyingObject;
         if(MathUtils.randomBoolean())
         {
             flyingObject = new FlyingObject(FlyingObject.FlyingObjectType.MONEY, game);

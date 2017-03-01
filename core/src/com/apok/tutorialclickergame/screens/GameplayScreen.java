@@ -4,6 +4,7 @@ import com.apok.tutorialclickergame.TutorialClickerGame;
 import com.apok.tutorialclickergame.controllers.FlyingObjectController;
 import com.apok.tutorialclickergame.entities.FlyingObject;
 import com.apok.tutorialclickergame.entities.Player;
+import com.apok.tutorialclickergame.service.PassiveIncomeService;
 import com.apok.tutorialclickergame.ui.IClickCallback;
 import com.apok.tutorialclickergame.ui.PlayerButton;
 import com.apok.tutorialclickergame.ui.ResetScoreButton;
@@ -32,6 +33,7 @@ public class GameplayScreen extends AbstractScreen {
         initResetScoreButton();
         initFlyingObjectController();
         game.getSoundService().playBackgroundMusic();
+        game.getPassiveIncomeService().start();
     }
 
     private void initFlyingObjectController() {
