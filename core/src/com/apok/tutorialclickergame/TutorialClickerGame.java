@@ -1,6 +1,7 @@
 package com.apok.tutorialclickergame;
 
 import com.apok.tutorialclickergame.screens.SplashScreen;
+import com.apok.tutorialclickergame.service.SoundService;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
@@ -17,7 +18,7 @@ public class TutorialClickerGame extends Game {
 	private Preferences prefs;
 	private boolean paused;
 
-	private Sound moneySound;
+	private SoundService soundService;
 
 	@Override
 	public void create () {
@@ -28,13 +29,9 @@ public class TutorialClickerGame extends Game {
 	private void init() {
 		prefs = Gdx.app.getPreferences(GAME_PREFS);
 		loadScore();
-		moneySound = Gdx.audio.newSound(Gdx.files.internal("coins.wav"));
+		soundService = new SoundService();
 	}
 
-	public void playMoneySound()
-	{
-		moneySound.play();
-	}
 
 	private void loadScore() {
 		points = prefs.getInteger(GAME_SCORE);
@@ -74,5 +71,9 @@ public class TutorialClickerGame extends Game {
 
 	public void addPassiveIncome() {
 		System.out.println("passive income click");
+	}
+
+	public SoundService getSoundService() {
+		return soundService;
 	}
 }

@@ -56,7 +56,7 @@ public class FlyingObject extends Image {
             game.addPoints(50);
         else if(FlyingObjectType.PASSIVE.equals(type))
             game.addPassiveIncome();
-        game.playMoneySound();
+        game.getSoundService().playMoneySound();
         FlyingObject.this.remove();
     }
 
