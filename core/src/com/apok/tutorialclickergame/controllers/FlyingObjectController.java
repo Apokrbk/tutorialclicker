@@ -24,20 +24,29 @@ public class FlyingObjectController {
         Timer.schedule(new Timer.Task() {
             @Override
             public void run() {
-                FlyingObject flyingObject = null;
-                if(MathUtils.randomBoolean())
-                {
-                    flyingObject = new FlyingObject(FlyingObject.FlyingObjectType.MONEY, game);
-                }
-                else
-                {
-                    flyingObject = new FlyingObject(FlyingObject.FlyingObjectType.PASSIVE, game);
-                }
-                stage.addActor(flyingObject);
-                flyingObject.fly();
-                randomizeSpawnTime();
+                Timer.schedule(new Timer.Task() {
+                    @Override
+                    public void run() {
+                        addRandomFlyingObjectToStage(stage, game);
+                        randomizeSpawnTime();
+                    }
+                }, spawnTime);
             }
-        },0, spawnTime);
+        },5,5);
+    }
+
+    private void addRandomFlyingObjectToStage(Stage stage, TutorialClickerGame game) {
+        FlyingObject flyingObject = null;
+        if(MathUtils.randomBoolean())
+        {
+            flyingObject = new FlyingObject(FlyingObject.FlyingObjectType.MONEY, game);
+        }
+        else
+        {
+            flyingObject = new FlyingObject(FlyingObject.FlyingObjectType.PASSIVE, game);
+        }
+        stage.addActor(flyingObject);
+        flyingObject.fly();
     }
 
     private void randomizeSpawnTime() {
