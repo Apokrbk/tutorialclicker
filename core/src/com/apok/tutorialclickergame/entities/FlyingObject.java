@@ -56,6 +56,7 @@ public class FlyingObject extends Image {
             game.addPoints(50);
         else if(FlyingObjectType.PASSIVE.equals(type))
             game.addPassiveIncome();
+        game.playMoneySound();
         FlyingObject.this.remove();
     }
 
@@ -74,7 +75,7 @@ public class FlyingObject extends Image {
         xSign = startingX == STARTING_X_1 ? 1 : -1;
         Action actionA= Actions.parallel(
                 Actions.moveBy(xSign*300+(MathUtils.random(-200,200)),200,MathUtils.random(1,4)),
-                Actions.rotateBy(360,MathUtils.random(1,3));
+                Actions.rotateBy(360,MathUtils.random(1,3))
         );
 
         Action actionB = Actions.parallel(

@@ -4,6 +4,7 @@ import com.apok.tutorialclickergame.screens.SplashScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.audio.Sound;
 
 public class TutorialClickerGame extends Game {
 
@@ -16,6 +17,8 @@ public class TutorialClickerGame extends Game {
 	private Preferences prefs;
 	private boolean paused;
 
+	private Sound moneySound;
+
 	@Override
 	public void create () {
 		init();
@@ -25,6 +28,12 @@ public class TutorialClickerGame extends Game {
 	private void init() {
 		prefs = Gdx.app.getPreferences(GAME_PREFS);
 		loadScore();
+		moneySound = Gdx.audio.newSound(Gdx.files.internal("coins.wav"));
+	}
+
+	public void playMoneySound()
+	{
+		moneySound.play();
 	}
 
 	private void loadScore() {
