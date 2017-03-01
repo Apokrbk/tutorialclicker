@@ -22,8 +22,8 @@ public class FlyingObject extends Image {
 
     public final static String MONEY = "money.png";
     private static final String PASSIVE = "passive.png";
-    private final static int WIDTH = 100;
-    private final static int HEIGHT = 100;
+    private final static int WIDTH = 50;
+    private final static int HEIGHT = 50;
     private static final int STARTING_Y = -100;
     private static final int STARTING_X = 0;
     private FlyingObjectType type;
