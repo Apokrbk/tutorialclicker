@@ -16,9 +16,9 @@ public class PlayerButton extends Button{
 
     private void init(final IClickCallback callback) {
         this.setWidth(460);
-        this.setHeight(360);
+        this.setHeight(660);
         this.setX(10);
-        this.setY(170);
+        this.setY(70);
 
         this.addListener(new ClickListener()
         {
@@ -28,7 +28,5 @@ public class PlayerButton extends Button{
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
-
-        this.setDebug(true);
     }
 }
