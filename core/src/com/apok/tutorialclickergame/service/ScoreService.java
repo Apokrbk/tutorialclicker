@@ -11,8 +11,11 @@ public class ScoreService {
 
     private static final String GAME_PREFS = "com.apok.tutorialclickergame.prefs";
     private static final String GAME_SCORE = "com.apok.tutorialclickergame.prefs.score";
+    private static final String GAME_PASSIVE_INCOME = "com.apok.tutorialclickergame.prefs.passiveincome";
+
 
     private int points;
+    private int passiveIncome;
     private Preferences prefs;
 
     public ScoreService() {
@@ -20,16 +23,23 @@ public class ScoreService {
     }
 
     public void addPassiveIncome() {
-        System.out.println("passive income click");
+        passiveIncome++;
+        updateSavedScoreInPrefs();
+        System.out.println("passive: "+ passiveIncome);
     }
 
     private void init() {
         prefs = Gdx.app.getPreferences(GAME_PREFS);
         loadScore();
+        loadPassiveIncome();
     }
 
     private void loadScore() {
         points = prefs.getInteger(GAME_SCORE);
+    }
+
+    private void loadPassiveIncome() {
+        passiveIncome = prefs.getInteger(GAME_PASSIVE_INCOME);
     }
 
     public void addPoints(int pointsToAdd)
@@ -40,11 +50,13 @@ public class ScoreService {
 
     private void updateSavedScoreInPrefs() {
         prefs.putInteger(GAME_SCORE, points);
+        prefs.putInteger(GAME_PASSIVE_INCOME, passiveIncome);
         prefs.flush();
     }
 
     public void resetGameScore() {
         points = 0;
+        passiveIncome = 0;
         updateSavedScoreInPrefs();
     }
 
