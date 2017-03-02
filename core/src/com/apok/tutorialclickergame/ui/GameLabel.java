@@ -8,8 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
  * Created by Apok on 28.02.2017.
  */
 
-public class ScoreLabel extends Label {
-    public ScoreLabel() {
+public class GameLabel extends Label {
+    public GameLabel() {
         super("", prepareLabelStyle());
         init();
     }

@@ -2,13 +2,12 @@ package com.apok.tutorialclickergame.screens;
 
 import com.apok.tutorialclickergame.TutorialClickerGame;
 import com.apok.tutorialclickergame.controllers.FlyingObjectController;
-import com.apok.tutorialclickergame.entities.FlyingObject;
 import com.apok.tutorialclickergame.entities.Player;
-import com.apok.tutorialclickergame.service.PassiveIncomeService;
+import com.apok.tutorialclickergame.ui.BasicDialog;
 import com.apok.tutorialclickergame.ui.IClickCallback;
 import com.apok.tutorialclickergame.ui.PlayerButton;
 import com.apok.tutorialclickergame.ui.ResetScoreButton;
-import com.apok.tutorialclickergame.ui.ScoreLabel;
+import com.apok.tutorialclickergame.ui.GameLabel;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
@@ -18,7 +17,7 @@ public class GameplayScreen extends AbstractScreen {
     private PlayerButton playerButton;
     private ResetScoreButton resetScoreButton;
     private Image background;
-    private ScoreLabel scoreLabel;
+    private GameLabel gameLabel;
     private FlyingObjectController flyingObjectController;
 
     public GameplayScreen(TutorialClickerGame game) {
@@ -34,6 +33,17 @@ public class GameplayScreen extends AbstractScreen {
         initFlyingObjectController();
         game.getSoundService().playBackgroundMusic();
         game.getPassiveIncomeService().start();
+        initPassiveIncomeInfoDialog();
+    }
+
+    private void initPassiveIncomeInfoDialog() {
+        if(game.getPassiveIncomeService().getPointsToAdd() > 0)
+        {
+            BasicDialog dialog = new BasicDialog();
+            stage.addActor(dialog);
+            dialog.initContent("Passive income gained: " + game.getPassiveIncomeService().getPointsToAdd());
+        }
+
     }
 
     private void initFlyingObjectController() {
@@ -62,8 +72,8 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     private void initScoreLabel() {
-        scoreLabel = new ScoreLabel();
-        stage.addActor(scoreLabel);
+        gameLabel = new GameLabel();
+        stage.addActor(gameLabel);
     }
 
     private void initPlayerButton() {
@@ -92,7 +102,7 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     private void update() {
-        scoreLabel.setText("SCORE: " + game.getScoreService().getPoints());
+        gameLabel.setText("SCORE: " + game.getScoreService().getPoints());
         stage.act();
 
     }
