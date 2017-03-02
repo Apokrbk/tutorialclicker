@@ -55,6 +55,12 @@ public class GameplayScreen extends AbstractScreen {
         stage.addActor(resetScoreButton);
     }
 
+    @Override
+    public void pause() {
+        super.pause();
+        game.getScoreService().saveCurrentTimestamp();
+    }
+
     private void initScoreLabel() {
         scoreLabel = new ScoreLabel();
         stage.addActor(scoreLabel);

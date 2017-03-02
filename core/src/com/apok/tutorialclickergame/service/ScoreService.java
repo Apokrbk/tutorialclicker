@@ -2,6 +2,11 @@ package com.apok.tutorialclickergame.service;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.utils.TimeUtils;
+
+import java.util.concurrent.TimeUnit;
+
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 /**
  * Created by Apok on 01.03.2017.
@@ -12,6 +17,8 @@ public class ScoreService {
     private static final String GAME_PREFS = "com.apok.tutorialclickergame.prefs";
     private static final String GAME_SCORE = "com.apok.tutorialclickergame.prefs.score";
     private static final String GAME_PASSIVE_INCOME = "com.apok.tutorialclickergame.prefs.passiveincome";
+    private static final String GAME_SAVED_TIMESTAMP = "com.apok.tutorialclickergame.prefs.savedtimestamp";
+
 
 
     private int points;
@@ -54,6 +61,7 @@ public class ScoreService {
         prefs.flush();
     }
 
+
     public void resetGameScore() {
         points = 0;
         passiveIncome = 0;
@@ -68,4 +76,13 @@ public class ScoreService {
         return passiveIncome;
     }
 
+    public void saveCurrentTimestamp() {
+        prefs.putLong(GAME_SAVED_TIMESTAMP, TimeUtils.millis());
+        prefs.flush();
+    }
+
+    public long getSavedTimestamp()
+    {
+        return prefs.getLong(GAME_SAVED_TIMESTAMP);
+    }
 }
